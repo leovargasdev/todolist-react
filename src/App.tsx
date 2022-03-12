@@ -3,6 +3,7 @@ import { FaPlus } from 'react-icons/fa'
 
 import styles from './app.module.scss'
 import { FormNewTask } from "./components/FormNewTask"
+import { SearchTask } from "./components/SearchTask"
 import { TodoList } from "./components/TodoList"
 
 interface Task {
@@ -16,6 +17,7 @@ const App = () => {
     { name: 'Cortar o cabelo', completed: true },
     { name: 'Lavar a louça', completed: false },
   ])
+  const [todolistFilter, setTodosListFilter] = useState<Task[]>([])
 
   const handleAddTask = (newTask: Task): void => {
     setTodoList([...todolist, newTask])
@@ -29,7 +31,7 @@ const App = () => {
   }
 
   const handleRemoveTask = (taskName: string): void => {
-    const todolistUpdate = todolist.filter(task => task.name !== taskName)
+    const todolistUpdate = [...todolist].filter(task => task.name !== taskName)
     setTodoList(todolistUpdate)
   }
 
@@ -39,13 +41,16 @@ const App = () => {
     return result.length
   }, [todolist])
 
+
   return (
     <div className={styles.container}>
       <h1>Todolist</h1>
 
       <FormNewTask addTask={handleAddTask} />
 
-      <TodoList  todolist={todolist} removeTask={handleRemoveTask} completedTask={handleCompletedTask} />
+      {/* <SearchTask onSearch={handleSearchTask} /> */}
+
+      <TodoList todolist={todolist} removeTask={handleRemoveTask} completedTask={handleCompletedTask} />
 
       <p className={styles.footer}>
         Número de tarefas concluidas:

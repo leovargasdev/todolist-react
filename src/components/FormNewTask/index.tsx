@@ -17,7 +17,7 @@ export const FormNewTask = ({ addTask }: FormNewTaskProps) => {
 
   const handleAddTask = () => {
     const newTask = {
-      name: taskName,
+      name: taskName.toLocaleLowerCase(),
       completed: false,
     }
     addTask(newTask)
@@ -28,7 +28,7 @@ export const FormNewTask = ({ addTask }: FormNewTaskProps) => {
     <div className={styles.newTask}>
       <input
         type="text"
-        placeholder="Digite a sua tarefaaaaaa"
+        placeholder="Digite a sua tarefa"
         value={taskName}
         onChange={(event) => setTaskName(event.target.value)}
       />
