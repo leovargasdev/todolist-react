@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --background: #181820;
+  --background-light: #21212B;
+
+  --primary: #FFFFFF;
+  --secondary: #F876A1;
+  --terciary: #818186;
+}
+
+body {
+  background: var(--background);
+}
+
+body, button, textarea, input {
+  color: var(--primary);
+  font: 400 1rem "Fredoka", sans-serif;
+}
