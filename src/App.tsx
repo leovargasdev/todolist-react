@@ -1,30 +1,24 @@
-import { useState } from "react"
-import { FaPlus, FaCheck, FaTrashAlt } from 'react-icons/fa'
+import { useMemo, useState } from "react"
+import { FaPlus } from 'react-icons/fa'
 
 import styles from './app.module.scss'
+import { FormNewTask } from "./components/FormNewTask"
 import { TodoList } from "./components/TodoList"
 
-interface Todo {
+interface Task {
   name: string
   completed: boolean
 }
 
 const App = () => {
-  const [taskName, setTaskName] = useState<string>('')
-  const [todolist, setTodoList] = useState<Todo[]>([
+  const [todolist, setTodoList] = useState<Task[]>([
     { name: 'Minicurso react', completed: false },
     { name: 'Cortar o cabelo', completed: true },
     { name: 'Lavar a louça', completed: false },
   ])
 
-  const addTask = (): void => {
-    const newTask = {
-      name: taskName,
-      completed: false,
-      id: todolist.length + 1
-    }
+  const handleAddTask = (newTask: Task): void => {
     setTodoList([...todolist, newTask])
-    setTaskName('')
   }
 
   const handleCompletedTask = (taskIndex: number): void => {
@@ -39,25 +33,24 @@ const App = () => {
     setTodoList(todolistUpdate)
   }
 
+  const totalTasksCompleted = useMemo(() => {
+    const result = todolist.filter(task => task.completed)
+
+    return result.length
+  }, [todolist])
+
   return (
     <div className={styles.container}>
       <h1>Todolist</h1>
 
-      <div className={styles.newTask}>
-        <input
-          type="text"
-          placeholder="Digite a sua tarefa"
-          value={taskName}
-          onChange={(event) => setTaskName(event.target.value)}
-        />
-        <button onClick={addTask}>
-          <FaPlus />
-          Adicionar tarefa
-        </button>
-      </div>
+      <FormNewTask addTask={handleAddTask} />
 
       <TodoList  todolist={todolist} removeTask={handleRemoveTask} completedTask={handleCompletedTask} />
 
+      <p className={styles.footer}>
+        Número de tarefas concluidas:
+        <strong>{totalTasksCompleted}</strong>
+      </p>
     </div>
   )
 }
