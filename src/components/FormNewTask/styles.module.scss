@@ -1,38 +1,29 @@
-.newTask {
+.form {
   display: flex;
-  column-gap: 16px;
+  column-gap: 24px;
+}
 
-  max-width: 500px;
-  width: 100%;
+.form__input {
+  flex: 1;
+  border-radius: 4px;
+  padding: 8px 16px;
+  color: var(--primary);
+  border: 1px solid var(--secondary);
+  background: var(--background-light);
+}
 
-  input {
-    flex: 1;
-    border-radius: 4px;
-    padding: 8px 16px;
-    color: var(--primary);
-    border: 1px solid var(--primary);
-    background: var(--background-light);
-  }
+.form__button {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
 
-  button {
-    display: flex;
-    align-items: center;
-    column-gap: 4px;
+  border: 0;
+  padding: 0 16px;
+  border-radius: 4px;
+  background: var(--secondary);
 
-    font-size: 12px;
-
-    border: 0;
-    padding: 0 16px;
-    border-radius: 4px;
-    background: var(--secondary);
-
-    svg {
-      font-size: 10px;
-    }
-    
-    &:hover {
-      cursor: pointer;
-      filter: brightness(0.9);
-    }
+  &:hover {
+    cursor: pointer;
+    filter: brightness(0.9);
   }
 }

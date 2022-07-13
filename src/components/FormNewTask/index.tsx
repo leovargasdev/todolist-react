@@ -1,41 +1,44 @@
-import { useState } from 'react'
+import {v4 as uuid} from "uuid"
 import { FaPlus } from 'react-icons/fa'
+import { FormEvent, useState } from 'react'
+
+import { Task } from '../../types/task'
 
 import styles from './styles.module.scss'
 
-interface Task {
-  name: string
-  completed: boolean
-}
-
 interface FormNewTaskProps {
-  addTask: (task: Task) => void
+  addNewTask: (task: Task) => void
 }
 
-export const FormNewTask = ({ addTask }: FormNewTaskProps) => {
-  const [taskName, setTaskName] = useState<string>('')
+export const FormNewTask = ({ addNewTask }: FormNewTaskProps) => {
+  const [task, setTask] = useState<string>('')
 
-  const handleAddTask = () => {
+  const handleSubmit = (event: FormEvent): void => {
+    event.preventDefault()
+
     const newTask = {
-      name: taskName.toLocaleLowerCase(),
+      id: uuid(),
+      name: task,
       completed: false,
     }
-    addTask(newTask)
-    setTaskName('')
+    
+    addNewTask(newTask)
+    setTask('')
   }
 
   return (
-    <div className={styles.newTask}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <input
         type="text"
+        value={task}
+        className={styles.form__input}
         placeholder="Digite a sua tarefa"
-        value={taskName}
-        onChange={(event) => setTaskName(event.target.value)}
+        onChange={(event) => setTask(event.target.value)}
       />
-      <button onClick={handleAddTask}>
-        <FaPlus />
-        Adicionar tarefa
+
+      <button type="submit" className={styles.form__button}>
+        <FaPlus size={12} /> Adicionar
       </button>
-    </div>
+    </form>
   )
 }
