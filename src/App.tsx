@@ -1,14 +1,14 @@
 import {v4 as uuid} from "uuid"
-import { useCallback, useMemo, useState } from "react"
+import { ChangeEvent, useMemo, useState } from "react"
 
-import { Tasks } from "../components/Tasks"
-import { SearchTask } from "../components/SearchTask"
-import { FormNewTask } from "../components/FormNewTask"
+import { Tasks } from "components/Tasks"
+import { Input } from "components/Input"
+import { FormNewTask } from "components/FormNewTask"
 
-import { Task } from "../types/task"
-import styles from './app.module.scss'
+import { Task } from "types/task"
+import styles from 'styles/app.module.scss'
 
-const App = () => {
+export const App = () => {
   const [tasks, setTasks] = useState<Task[]>([
     { id: uuid(), name: 'Curso de react', visible: true, completed: false },
     { id: uuid(), name: 'Cortar o cabelo', visible: true, completed: true },
@@ -32,7 +32,9 @@ const App = () => {
     setTasks(state => state.filter(task => task.id !== taskId))
   }
 
-  const handleSearchTask = (taskName: string): void => {
+  const handleSearchTask = (event: ChangeEvent<HTMLInputElement>): void => {
+    const taskName = event.target.value.toLocaleLowerCase()
+
     setTasks(state => state.map(task => ({
       ...task,
       visible: task.name.toLocaleLowerCase().includes(taskName)
@@ -56,7 +58,7 @@ const App = () => {
 
         <hr />
 
-        <SearchTask onSearch={handleSearchTask} />
+        <Input type="text" onChange={handleSearchTask} placeholder="Nome da tarefa" />
 
         <Tasks tasks={tasks} removeTask={handleRemoveTask} completedTask={handleCompletedTask} />
 
@@ -72,5 +74,3 @@ const App = () => {
     </div>
   )
 }
-
-export default App

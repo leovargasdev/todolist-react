@@ -2,7 +2,8 @@ import {v4 as uuid} from "uuid"
 import { FaPlus } from 'react-icons/fa'
 import { FormEvent, useState } from 'react'
 
-import { Task } from '../../types/task'
+import { Task } from 'types/task'
+import { Input } from "components/Input"
 
 import styles from './styles.module.scss'
 
@@ -29,15 +30,14 @@ export const FormNewTask = ({ addNewTask }: FormNewTaskProps) => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <input
+      <Input
         type="text"
         value={task}
-        className={styles.form__input}
         placeholder="Digite a sua tarefa"
         onChange={(event) => setTask(event.target.value)}
       />
 
-      <button type="submit" className={styles.form__button}>
+      <button type="submit" className={styles.form__button} disabled={!task}>
         <FaPlus size={12} /> Adicionar
       </button>
     </form>

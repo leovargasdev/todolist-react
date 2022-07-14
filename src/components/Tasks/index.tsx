@@ -1,6 +1,6 @@
-import { FaCheck, FaTrashAlt } from 'react-icons/fa'
+import { FaTrashAlt } from 'react-icons/fa'
 
-import { Task } from '../../types/task'
+import { Task } from 'types/task'
 import styles from './styles.module.scss'
 
 interface TodosListProps {

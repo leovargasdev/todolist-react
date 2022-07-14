@@ -1,18 +1,9 @@
 .form {
   display: flex;
   column-gap: 24px;
-}
 
-.form__input {
-  flex: 1;
-  border-radius: 4px;
-  padding: 8px 16px;
-  color: var(--primary);
-  border: 1px solid var(--secondary);
-  background: var(--background-light);
-
-  &::placeholder {
-    color: var(--terciary);
+  input {
+    flex: 1;
   }
 }
 
@@ -29,5 +20,10 @@
   &:hover {
     cursor: pointer;
     filter: brightness(0.9);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 }
