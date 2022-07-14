@@ -13,31 +13,20 @@
   padding: 16px;
   border-radius: 0 8px 8px 0;
   background: var(--background-light);
-  border-left: 8px solid var(--secondary);
+  border-left: 6px solid var(--secondary);
 
-  &.active {    
-    .task__name {
-      text-decoration: line-through;
-    }
-
-    .task__checkbox svg {
-      visibility: visible;
-    }
+  &.active .task__name {
+    text-decoration: line-through;
   }
 }
 
 .task__checkbox {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
   width: 16px;
   height: 16px;
-  border-radius: 2px;
-  background: var(--terciary);
+  accent-color: white;
 
-  svg {
-    visibility: hidden;
+  &:hover {
+    cursor: pointer;
   }
 }
 
@@ -45,7 +34,6 @@
   flex: 1;
   user-select: none;
   font-size: 20px;
-  font-weight: 500;
 }
 
 .task__remove {

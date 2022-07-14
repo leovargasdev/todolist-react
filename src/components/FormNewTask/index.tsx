@@ -20,6 +20,7 @@ export const FormNewTask = ({ addNewTask }: FormNewTaskProps) => {
       id: uuid(),
       name: task,
       completed: false,
+      visible: true,
     }
     
     addNewTask(newTask)

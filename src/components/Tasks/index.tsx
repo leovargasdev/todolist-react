@@ -11,12 +11,15 @@ interface TodosListProps {
 
 export const Tasks = ({ tasks, removeTask, completedTask }: TodosListProps) => (
   <ul className={styles.tasks}>
-    {tasks.map(task => (
+    {tasks.map(task => task.visible && (
       <li key={task.id} className={`${styles.task} ${task.completed ? styles.active : '' }`} >
 
-        <span onClick={() => completedTask(task.id)} className={styles.task__checkbox}>
-          <FaCheck size={12} />
-        </span>
+        <input
+          type="checkbox"
+          checked={task.completed}
+          className={styles.task__checkbox}
+          onChange={() => completedTask(task.id)}
+        />
 
         <strong className={styles.task__name}>
           {task.name}

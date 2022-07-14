@@ -10,6 +10,10 @@
   color: var(--primary);
   border: 1px solid var(--secondary);
   background: var(--background-light);
+
+  &::placeholder {
+    color: var(--terciary);
+  }
 }
 
 .form__button {

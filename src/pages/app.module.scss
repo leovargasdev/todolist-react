@@ -25,4 +25,26 @@
     margin: 10px 0;
     border-top: 1px solid var(--terciary);
   }
+
+  footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    row-gap: 6px;
+
+    span {
+      font-size: 20px;
+      font-weight: 400;
+      padding: 10px 16px;
+      border-radius: 4px;
+      background: var(--background-light);
+    }
+
+    strong {
+      margin-left: 6px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: var(--secondary);
+    }
+  }
 }

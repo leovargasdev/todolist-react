@@ -12,8 +12,8 @@
   --background-light: #21212B;
 
   --primary: #FFFFFF;
-  --secondary: #F876A1;
-  --terciary: #818186;
+  --secondary: #F95738;
+  --terciary: #bbbbbb;
 }
 
 body {
@@ -23,4 +23,8 @@ body {
 body, button, textarea, input {
   color: var(--primary);
   font: 400 1rem "Fredoka", sans-serif;
+}
+
+strong {
+  font-weight: 600;
 }
